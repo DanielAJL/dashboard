@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { CredentialsUserDTO } from '../DTOs/credentialsUserDTO';
 import { UserDTO } from '../DTOs/UserDTO';
 import { ApiService } from './api.service';
 
@@ -20,9 +21,9 @@ export class UsersService {
     return response.data as UserDTO;
   }
 
-  async createUser(user: UserDTO) {
+  async createUser(user: CredentialsUserDTO) {
     const response = await this.apiService.post(`${this.API_PATH}`, user);
-    return response.data as UserDTO;
+    return response.data as CredentialsUserDTO;
   }
 
   async deleteUser(userId: string) {

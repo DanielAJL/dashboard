@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDTO } from 'src/app/DTOs/UserDTO';
+import { CredentialsUserDTO } from 'src/app/DTOs/credentialsUserDTO';
 import {
   FormBuilder,
   FormGroup,
@@ -47,7 +48,7 @@ export class RegisterComponent implements OnInit {
     const email = this.registerForm.get('email')?.value;
     const password = this.registerForm.get('password')?.value;
 
-    const user: UserDTO = {
+    const user: CredentialsUserDTO = {
       password: password,
       email: email,
     };

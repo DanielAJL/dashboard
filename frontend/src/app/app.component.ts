@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-// import { CreateUserDTO } from './DTOs/CreateUserDTO';
 import { UserDTO } from './DTOs/UserDTO';
+import { CredentialsUserDTO } from './DTOs/credentialsUserDTO';
 import { AuthService } from './services/auth.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { SharedDataService } from './services/shared-data.service';

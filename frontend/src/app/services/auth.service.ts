@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserDTO } from '../DTOs/UserDTO';
+import { CredentialsUserDTO } from '../DTOs/credentialsUserDTO';
 import { ApiService } from './api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -10,10 +11,10 @@ export class AuthService {
 
   constructor(private apiService: ApiService, private router: Router, private route: ActivatedRoute) { }
 
-  async login(user: UserDTO): Promise<UserDTO> {
+  async login(user: CredentialsUserDTO): Promise<CredentialsUserDTO> {
     const response = await this.apiService.post('login', user);
     this.router.navigate(['onboarding'])
-    return response.data as UserDTO;
+    return response.data as CredentialsUserDTO;
   }
 
   async logout(user: UserDTO): Promise<UserDTO> {

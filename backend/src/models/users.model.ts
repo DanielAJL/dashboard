@@ -11,6 +11,11 @@ const userSchema: Schema = new Schema({
     type: String,
     required: true,
   },
+  onboarded: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 
 const userModel = model<User & Document>('User', userSchema);
