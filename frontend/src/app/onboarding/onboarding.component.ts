@@ -20,8 +20,6 @@ export class OnboardingComponent implements OnInit {
 
   constructor(private sharedDataService: SharedDataService) {
     this.sharedDataService.getUserObs().subscribe((user: UserDTO) => {
-      console.log('test');
-
       if (user) {
         this.user = user;
       }

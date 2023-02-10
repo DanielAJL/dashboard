@@ -6,6 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { RegisterAndLoginModule } from './register-and-login/register-and-login.module';
 
+import { MatSidenavModule } from '@angular/material/sidenav';
+
 import { AppComponent } from './app.component';
 import { OnboardingModule } from './onboarding/onboarding.module';
 
@@ -21,6 +23,7 @@ import { OnboardingModule } from './onboarding/onboarding.module';
     HttpClientModule,
     RegisterAndLoginModule,
     OnboardingModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]

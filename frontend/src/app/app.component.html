@@ -1,1 +1,28 @@
-<router-outlet></router-outlet>
+<mat-drawer-container class="navigation-container">
+  <mat-drawer class="navigation" #navigation mode="side" opened *ngIf="isLoggedIn">
+    <div class="nav-div">
+
+      <p class="nav-title">Navigation</p>
+      <ul class="nav-list">
+        <li class="nav-link"><a routerLink="onboarding"><i class="fa-solid fa-user"></i><span>Dashboard</span></a></li>
+      </ul>
+    </div>
+
+    <div class="nav-div">
+      <p class="nav-title">Actions</p>
+      <ul class="nav-list">
+        <li class="nav-link" (click)="logout()">
+          <a routerLink="">
+            <i class="fa-solid fa-sign-out"></i><span>Logout</span></a>
+        </li>
+      </ul>
+    </div>
+    <p class="version-display white">Version: v{{appVersion}}</p>
+  </mat-drawer>
+
+  <!-- MAIN APP CONTENT RENDERED BY ROUTER: -->
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+
+</mat-drawer-container>

@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
 
     // this.checkUserActiveSession();
     this.dummyUser = {
-      email: "tester123@test.com",
+      email: "tester123@test.nl",
       password: "tester123"
     }
   }
