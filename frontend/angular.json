@@ -28,7 +28,9 @@
               "src/assets"
             ],
             "styles": [
+              "src/scss/bootstrap.min.css",
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/scss/material_overrides.scss",
               "src/styles.scss"
             ],
             "scripts": []

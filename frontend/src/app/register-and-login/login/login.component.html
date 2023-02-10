@@ -34,8 +34,9 @@
           </div>
           <div class="row actions">
             <div class="col-12">
-              <button mat-flat-button color="primary" (click)="login()" [disabled]="!loginForm.valid">Login</button>
+              <!-- <button mat-flat-button color="primary" (click)="login()" [disabled]="!loginForm.valid">Login</button> -->
               <!-- <button class="btn btn-sm btn-secondary w-100" [routerLink]="['/register']">Register</button> -->
+              <button class="btn btn-primary w-100" (click)="login()" [disabled]="!loginForm.valid">Login</button>
             </div>
           </div>
           <div class="row">
