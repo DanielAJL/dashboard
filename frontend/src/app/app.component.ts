@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
       if (this.user)
         this.isLoggedIn = true;
     });
+    // this.logout();
   }
 
   async logout() {

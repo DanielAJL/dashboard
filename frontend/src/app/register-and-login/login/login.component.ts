@@ -89,11 +89,6 @@ export class LoginComponent implements OnInit {
     await this.authService.logout(this.user);
   }
 
-  logger() {
-    console.log(this.user);
-
-  }
-
   // async checkUserActiveSession(): Promise<UserDTO> {
   //   const user = await this.authService.getCurrentSession();
   //   return this.user = user;

@@ -34,16 +34,14 @@
           </div>
           <div class="row actions">
             <div class="col-12">
-              <button class="btn btn-primary w-100" (click)="login()" [disabled]="!loginForm.valid">Login</button>
-              <button class="btn btn-primary w-100" (click)="logger()">LOGGER</button>
+              <button mat-flat-button color="primary" (click)="login()" [disabled]="!loginForm.valid">Login</button>
               <!-- <button class="btn btn-sm btn-secondary w-100" [routerLink]="['/register']">Register</button> -->
             </div>
           </div>
           <div class="row">
             <div class="col-12">
               <p class="text-center info-link"><a [routerLink]="['/register']"
-                  routerLinkActive="router-link-active">Click here to register a new
-                  user</a> </p>
+                  routerLinkActive="router-link-active">Click here to register a new user</a></p>
             </div>
           </div>
         </form>
