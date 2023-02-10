@@ -44,7 +44,7 @@ class AuthController {
 
   public getCurrentSession = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      // console.log(req.body);
+      console.log(req.body);
       res.status(200).json({ data: req.body, message: 'current_user_session' });
     } catch (error) {
       next(error);

@@ -16,12 +16,11 @@ const sessionMiddleware = async (req: Request, res: Response, next: NextFunction
       const findUser = await userModel.findById(userId);
 
       if (findUser) {
-        req.body = true;
+        req.body = findUser;
         next();
       } else {
         req.body = false;
         next();
-
         // next(new HttpException(401, 'Wrong authentication token'));
       }
     } else {
