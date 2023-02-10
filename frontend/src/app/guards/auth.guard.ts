@@ -6,9 +6,9 @@ import {
   RouterStateSnapshot,
   UrlTree
 } from "@angular/router";
-import { UserDTO } from "../DTOs/UserDTO";
 import { AuthService } from "../services/auth.service";
 import { SharedDataService } from "../services/shared-data.service";
+
 @Injectable()
 export class AuthGuard implements CanActivate {
   isActiveSession: any;

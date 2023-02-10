@@ -25,7 +25,7 @@ export class RedirectGuard implements CanActivate {
       const user = await this.authService.getCurrentSession();
       if (user) {
         this.sharedDataService.setUserObs(user);
-        // this.router.navigate(['/dashboard']);
+        this.router.navigate(['/onboarding']);
         return false;
       } else {
         return true;

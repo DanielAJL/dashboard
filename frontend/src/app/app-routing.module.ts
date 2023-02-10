@@ -2,8 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { RedirectGuard } from './guards/redirect.guard';
-import { RegisterComponent } from './register-and-login/register/register.component';
+
 import { LoginComponent } from './register-and-login/login/login.component';
+import { RegisterComponent } from './register-and-login/register/register.component';
+import { OnboardingComponent } from './onboarding/onboarding.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -16,6 +19,7 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent, canActivate: [RedirectGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [RedirectGuard] },
+  { path: 'onboarding', component: OnboardingComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
