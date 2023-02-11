@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
   }
 
   async login() {
-    if (this.formHasValidationErrors()) return;
+    if (this.formHasValidationErrors(this.loginForm)) return;
     const email = this.loginForm.get('email')?.value;
     const password = this.loginForm.get('password')?.value;
 
@@ -95,11 +95,11 @@ export class LoginComponent implements OnInit {
   //   return this.user = user;
   // }
 
-  formHasValidationErrors(): boolean {
+  formHasValidationErrors(formGroup: FormGroup): boolean {
     let errorCount: number = 0;
-    Object.keys(this.loginForm.controls).forEach((key) => {
+    Object.keys(formGroup.controls).forEach((key) => {
       const controlErrors: ValidationErrors | null | undefined =
-        this.loginForm.get(key)?.errors;
+        formGroup.get(key)?.errors;
       if (controlErrors != null) {
         // Form group has errors
         Object.keys(controlErrors).forEach((keyError) => {
