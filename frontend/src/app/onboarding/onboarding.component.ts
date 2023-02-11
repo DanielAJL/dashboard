@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-// import {
-//   FormBuilder,
-//   FormGroup,
-//   ValidationErrors,
-//   Validators,
-// } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 import { UserDTO } from '../DTOs/UserDTO';
 import { SharedDataService } from '../services/shared-data.service';
 // import { AuthService } from 'src/app/services/auth.service';
@@ -13,12 +13,20 @@ import { SharedDataService } from '../services/shared-data.service';
 @Component({
   selector: 'onboarding',
   templateUrl: './onboarding.component.html',
-  // styleUrls: ['./onboarding.component.scss']
 })
 export class OnboardingComponent implements OnInit {
   user!: UserDTO;
+  expertiseAreas: string[] = ['Frontend', 'Backend', 'Fullstack'];
 
-  constructor(private sharedDataService: SharedDataService) {
+  firstFormGroup = this.formBuilder.group({
+    firstName: ['', Validators.required],
+  });
+  secondFormGroup = this.formBuilder.group({
+    areaExpertise: ['', Validators.required], // FrontEnd, BackEnd, Full Stack
+    // githubProfile: [''],
+  });
+
+  constructor(private sharedDataService: SharedDataService, private formBuilder: FormBuilder) {
     this.sharedDataService.getUserObs().subscribe((user: UserDTO) => {
       if (user) {
         this.user = user;
@@ -30,25 +38,25 @@ export class OnboardingComponent implements OnInit {
     console.log(this.user);
   }
 
-  // formHasValidationErrors(): boolean {
-  //   let errorCount: number = 0;
-  //   Object.keys(this.loginForm.controls).forEach((key) => {
-  //     const controlErrors: ValidationErrors | null | undefined =
-  //       this.loginForm.get(key)?.errors;
-  //     if (controlErrors != null) {
-  //       // Form group has errors
-  //       Object.keys(controlErrors).forEach((keyError) => {
-  //         errorCount += 1;
-  //         // console.log(
-  //         //   'Key control: ' + key + ', keyError: ' + keyError + ', err value: ',
-  //         //   controlErrors[keyError]
-  //         // );
-  //         return true;
-  //       });
-  //     }
-  //   });
-  //   // Form is valid
-  //   return false;
-  // }
+  formHasValidationErrors(formGroup: FormGroup): boolean {
+    let errorCount: number = 0;
+    Object.keys(formGroup.controls).forEach((key) => {
+      const controlErrors: ValidationErrors | null | undefined =
+        formGroup.get(key)?.errors;
+      if (controlErrors != null) {
+        // Form group has errors
+        Object.keys(controlErrors).forEach((keyError) => {
+          errorCount += 1;
+          // console.log(
+          //   'Key control: ' + key + ', keyError: ' + keyError + ', err value: ',
+          //   controlErrors[keyError]
+          // );
+          return true;
+        });
+      }
+    });
+    // Form is valid
+    return false;
+  }
 
 }
