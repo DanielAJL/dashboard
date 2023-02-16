@@ -25,12 +25,15 @@ export class AuthService {
     return response.data as UserDTO;
   }
 
-  async getCurrentSession(): Promise<boolean> {
+  // Returns the false when no session active or the user returned from api
+  async getCurrentSession(): Promise<boolean | UserDTO> {
     const response = await this.apiService.get('session');
     if (response.data) {
       // console.log(response.data);
+      return response.data as UserDTO;
+
     } else {
+      return response.data as boolean;
     }
-    return response.data as boolean;
   }
 }

@@ -6,7 +6,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { UserDTO } from '../DTOs/UserDTO';
+import { UserProfileInformationDTO } from '../DTOs/UserProfileInformationDTO';
 import { SharedDataService } from '../services/shared-data.service';
+import { UsersService } from '../services/users.service';
 // import { AuthService } from 'src/app/services/auth.service';
 // import { Router, ParamMap } from '@angular/router';
 
@@ -23,11 +25,10 @@ export class OnboardingComponent implements OnInit {
   });
   secondFormGroup = this.formBuilder.group({
     areaExpertise: ['', Validators.required], // FrontEnd, BackEnd, Full Stack
-    // githubProfile: [''],
   });
 
-  constructor(private sharedDataService: SharedDataService, private formBuilder: FormBuilder) {
-    this.sharedDataService.getUserObs().subscribe((user: UserDTO) => {
+  constructor(private sharedDataService: SharedDataService, private formBuilder: FormBuilder, private usersService: UsersService) {
+    this.sharedDataService.getUserObs().subscribe((user) => {
       if (user) {
         this.user = user;
       }
@@ -35,7 +36,27 @@ export class OnboardingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.user);
+    // console.log(this.user);
+  }
+
+  public async submitOnboarding(): Promise<void> {
+    if (this.formHasValidationErrors(this.firstFormGroup) || this.formHasValidationErrors(this.secondFormGroup)) return;
+    let profile = new UserProfileInformationDTO();
+    const firstNameControl = this.firstFormGroup.get('firstName');
+    const expertiseAreaControl = this.secondFormGroup.get('expertiseAreas');
+    if (firstNameControl) {
+      const firstName = firstNameControl.value;
+      profile.name = firstName;
+    }
+    if (expertiseAreaControl) {
+      const expertiseArea = expertiseAreaControl.value;
+      profile.expertiseArea = expertiseArea;
+    }
+
+    this.user.profile = profile;
+    this.user.onboarded = true;
+
+    this.usersService.updateUser(this.user._id!, this.user);
   }
 
   formHasValidationErrors(formGroup: FormGroup): boolean {

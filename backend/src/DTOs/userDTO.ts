@@ -1,4 +1,5 @@
-import { IsArray, IsBoolean, IsEmail, IsString } from 'class-validator';
+import { IsArray, IsBoolean, IsEmail, IsObject, IsString } from 'class-validator';
+import { UserProfileInformationDTO } from './userProfileInformationDTO';
 
 export class CredentialsUserDTO {
   @IsEmail()
@@ -17,4 +18,7 @@ export class UserDTO {
 
   @IsBoolean()
   public onboarded?: boolean;
+
+  @IsObject()
+  public profile?: UserProfileInformationDTO;
 }

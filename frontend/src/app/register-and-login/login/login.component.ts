@@ -13,7 +13,6 @@ import { Router, ParamMap } from '@angular/router';
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
-  // styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
@@ -45,8 +44,6 @@ export class LoginComponent implements OnInit {
     });
 
     this.sharedDataService.getUserObs().subscribe((user: UserDTO) => {
-      console.log('test');
-
       if (user) {
         this.user = user;
       }
@@ -55,8 +52,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.user);
-
-    // this.checkUserActiveSession();
     this.dummyUser = {
       email: "tester123@test.nl",
       password: "tester123"

@@ -16,6 +16,10 @@ const userSchema: Schema = new Schema({
     required: false,
     default: false,
   },
+  profile: {
+    type: Object,
+    required: false,
+  },
 });
 
 const userModel = model<User & Document>('User', userSchema);
