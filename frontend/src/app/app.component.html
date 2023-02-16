@@ -3,7 +3,7 @@
     <div class="nav-div">
 
       <p class="nav-title">Navigation</p>
-      <ul class="nav-list">
+      <ul class="nav-list" *ngIf="user.onboarded">
         <li class="nav-link"><a routerLink="dashboard"><i class="fa-solid fa-user"></i><span>Dashboard</span></a></li>
       </ul>
     </div>
