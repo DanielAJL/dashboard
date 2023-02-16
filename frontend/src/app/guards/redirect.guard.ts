@@ -6,6 +6,7 @@ import {
   RouterStateSnapshot,
   UrlTree
 } from "@angular/router";
+import { UserDTO } from "../DTOs/UserDTO";
 import { AuthService } from "../services/auth.service";
 import { SharedDataService } from "../services/shared-data.service";
 @Injectable()
@@ -25,6 +26,10 @@ export class RedirectGuard implements CanActivate {
       const user = await this.authService.getCurrentSession();
       if (user) {
         this.sharedDataService.setUserObs(user);
+        if ((user as UserDTO).onboarded === true) {
+          this.router.navigate(['/dashboard']);
+          return false;
+        }
         this.router.navigate(['/onboarding']);
         return false;
       } else {

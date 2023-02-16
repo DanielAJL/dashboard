@@ -11,10 +11,14 @@ export class AuthService {
 
   constructor(private apiService: ApiService, private router: Router, private route: ActivatedRoute) { }
 
-  async login(user: CredentialsUserDTO): Promise<CredentialsUserDTO> {
+  async login(user: CredentialsUserDTO): Promise<UserDTO> {
     const response = await this.apiService.post('login', user);
-    this.router.navigate(['onboarding'])
-    return response.data as CredentialsUserDTO;
+    if (user.onboarded === true) {
+      this.router.navigate(['dashboard']);
+    } else {
+      this.router.navigate(['onboarding']);
+    }
+    return response.data as UserDTO;
   }
 
   async logout(user: UserDTO): Promise<UserDTO> {

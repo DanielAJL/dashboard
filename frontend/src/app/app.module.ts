@@ -10,10 +10,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { AppComponent } from './app.component';
 import { OnboardingModule } from './onboarding/onboarding.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -22,6 +23,7 @@ import { OnboardingModule } from './onboarding/onboarding.module';
     AppRoutingModule,
     HttpClientModule,
     RegisterAndLoginModule,
+    DashboardModule,
     OnboardingModule,
     MatSidenavModule
   ],

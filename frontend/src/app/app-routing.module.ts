@@ -6,6 +6,7 @@ import { RedirectGuard } from './guards/redirect.guard';
 import { LoginComponent } from './register-and-login/login/login.component';
 import { RegisterComponent } from './register-and-login/register/register.component';
 import { OnboardingComponent } from './onboarding/onboarding.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -19,7 +20,8 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent, canActivate: [RedirectGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [RedirectGuard] },
-  { path: 'onboarding', component: OnboardingComponent, canActivate: [AuthGuard] },
+  { path: 'onboarding', component: OnboardingComponent, canActivate: [AuthGuard, RedirectGuard] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard, RedirectGuard] },
 ];
 
 @NgModule({
