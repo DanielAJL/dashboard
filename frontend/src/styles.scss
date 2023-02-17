@@ -8,6 +8,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background-color: #90b2b9;
 }
 
+/******************** Global Styling Here **********************
+***************************************************************/
+.col-6 {
+  mat-checkbox {
+    max-width: calc(100% / 3);
+    width: 100%;
+  }
+}
+
 /********************* Register & Login ***********************
 ***************************************************************/
 login, register {

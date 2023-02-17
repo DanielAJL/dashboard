@@ -1,45 +1,84 @@
-<mat-card>
-  <mat-stepper [linear]="true" #stepper>
-    <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup">
-        <ng-template matStepLabel>Basic Profile Information</ng-template>
-        <mat-form-field appearance="outline">
-          <mat-label>What is your first name?</mat-label>
-          <input matInput placeholder="John" formControlName="firstName" required>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>What is your GitHub username?</mat-label>
-          <input matInput placeholder="GithubUsername123" formControlName="githubUsername" required>
-        </mat-form-field>
-        <div>
-          <button mat-raised-button color="primary" matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-    <mat-step [stepControl]="secondFormGroup" label="Expertise & Experience Information">
-      <form [formGroup]="secondFormGroup">
-        <mat-form-field appearance="outline">
-          <mat-label>Are you a Frontend, Backend or Fullstack developer?</mat-label>
-          <mat-select formControlName="areaExpertise">
-            <mat-option *ngFor="let area of expertiseAreas" [value]="area">
-              {{area}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <div>
-          <button mat-raised-button matStepperPrevious>Back</button>
-          <button mat-raised-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Onboarding Complete!</ng-template>
-      <p>You are now done.</p>
-      <div>
-        <button mat-raised-button matStepperPrevious>Back</button>
-        <button mat-raised-button color="primary" (click)="submitOnboarding()">Complete Onboarding!</button>
+<div class="container">
+  <mat-card>
+    <div class="row">
+      <div class="col-12">
+        <mat-stepper [linear]="true" #stepper>
+          <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+              <ng-template matStepLabel>Basic Profile Information</ng-template>
+              <div class="row">
+                <div class="col-6">
+                  <mat-form-field appearance="outline">
+                    <mat-label>What is your first name?</mat-label>
+                    <input matInput placeholder="John" formControlName="firstName" required>
+                  </mat-form-field>
+                </div>
+                <div class="col-6">
+                  <mat-form-field appearance="outline">
+                    <mat-label>What is your GitHub username?</mat-label>
+                    <input matInput placeholder="GithubUsername123" formControlName="githubUsername" required>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div>
+                <button mat-raised-button color="primary" matStepperNext>Next</button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="secondFormGroup" label="Expertise & Experience Information">
+            <form [formGroup]="secondFormGroup">
+              <div class="row">
+                <div class="col-6">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Are you a Frontend, Backend or Fullstack developer?</mat-label>
+                    <mat-select formControlName="areaExpertise">
+                      <mat-option *ngFor="let area of expertiseAreas" [value]="area">
+                        {{area}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-6">
+                  <mat-form-field appearance="outline">
+                    <mat-label>How long have you been programming?</mat-label>
+                    <mat-select formControlName="experienceYears">
+                      <mat-option *ngFor="let year of yearOptions" [value]="year">
+                        {{year}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <p>
+                    <b>* Optional:</b><br>
+                    Please select the languages you are comfortable working with.
+                  </p>
+                </div>
 
+                <div class="col-6">
+                  <mat-checkbox *ngFor="let language of programmingLanguages" [(ngModel)]="language.checked"
+                    [ngModelOptions]="{standalone: true}">{{language.name}}</mat-checkbox>
+                </div>
+              </div>
+              <div>
+                <button mat-raised-button matStepperPrevious>Back</button>
+                <button mat-raised-button color="primary" matStepperNext>Next</button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step>
+            <ng-template matStepLabel>Onboarding Complete!</ng-template>
+            <p>You are now done.</p>
+            <div>
+              <button mat-raised-button matStepperPrevious>Back</button>
+              <button mat-raised-button color="primary" (click)="submitOnboarding()">Complete Onboarding!</button>
+
+            </div>
+          </mat-step>
+        </mat-stepper>
       </div>
-    </mat-step>
-  </mat-stepper>
-</mat-card>
+    </div>
+  </mat-card>
+</div>

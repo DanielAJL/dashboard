@@ -1,4 +1,4 @@
-import { IsString } from 'class-validator';
+import { IsArray, IsString } from 'class-validator';
 
 export class UserProfileInformationDTO {
   @IsString()
@@ -9,4 +9,10 @@ export class UserProfileInformationDTO {
 
   @IsString()
   public githubUsername?: string;
+
+  @IsArray()
+  public languages?: Array<string>;
+
+  @IsString()
+  public experienceYears?: string;
 }
