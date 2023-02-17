@@ -1,4 +1,5 @@
-import { IsArray, IsBoolean, IsEmail, IsObject, IsString } from 'class-validator';
+import { IsArray, IsBoolean, IsEmail, IsMongoId, IsNumber, isNumber, IsObject, IsString } from 'class-validator';
+import { ObjectId } from 'mongoose';
 import { UserProfileInformationDTO } from './userProfileInformationDTO';
 
 export class CredentialsUserDTO {
@@ -10,6 +11,13 @@ export class CredentialsUserDTO {
 }
 
 export class UserDTO {
+
+  @IsMongoId()
+  public _id: ObjectId;
+
+  @IsNumber()
+  public __v: number;
+
   @IsEmail()
   public email: string;
 
