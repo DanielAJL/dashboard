@@ -1,16 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  ValidationErrors,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { Router } from "@angular/router";
 import { UserDTO } from '../DTOs/UserDTO';
 import { UserProfileInformationDTO } from '../DTOs/UserProfileInformationDTO';
 import { SharedDataService } from '../services/shared-data.service';
 import { UsersService } from '../services/users.service';
-// import { AuthService } from 'src/app/services/auth.service';
-// import { Router, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'onboarding',
@@ -27,7 +21,7 @@ export class OnboardingComponent implements OnInit {
     areaExpertise: ['', Validators.required], // FrontEnd, BackEnd, Full Stack
   });
 
-  constructor(private sharedDataService: SharedDataService, private formBuilder: FormBuilder, private usersService: UsersService) {
+  constructor(private sharedDataService: SharedDataService, private formBuilder: FormBuilder, private usersService: UsersService, private router: Router) {
     this.sharedDataService.getUserObs().subscribe((user) => {
       if (user) {
         this.user = user;
@@ -36,14 +30,14 @@ export class OnboardingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // console.log(this.user);
+
   }
 
   public async submitOnboarding(): Promise<void> {
     if (this.formHasValidationErrors(this.firstFormGroup) || this.formHasValidationErrors(this.secondFormGroup)) return;
     let profile = new UserProfileInformationDTO();
     const firstNameControl = this.firstFormGroup.get('firstName');
-    const expertiseAreaControl = this.secondFormGroup.get('expertiseAreas');
+    const expertiseAreaControl = this.secondFormGroup.get('areaExpertise');
     if (firstNameControl) {
       const firstName = firstNameControl.value;
       profile.name = firstName;
@@ -56,7 +50,12 @@ export class OnboardingComponent implements OnInit {
     this.user.profile = profile;
     this.user.onboarded = true;
 
-    this.usersService.updateUser(this.user._id!, this.user);
+    this.usersService.updateUser(this.user._id!, this.user).then(user => {
+      if (user) {
+        this.user = user;
+        this.router.navigate(['/dashboard']);
+      }
+    });
   }
 
   formHasValidationErrors(formGroup: FormGroup): boolean {
