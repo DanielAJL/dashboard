@@ -3,18 +3,22 @@
     <mat-step [stepControl]="firstFormGroup">
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>Basic Profile Information</ng-template>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
           <mat-label>What is your first name?</mat-label>
-          <input matInput placeholder="John, Bill, Karen" formControlName="firstName" required>
+          <input matInput placeholder="John" formControlName="firstName" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>What is your GitHub username?</mat-label>
+          <input matInput placeholder="GithubUsername123" formControlName="githubUsername" required>
         </mat-form-field>
         <div>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
     <mat-step [stepControl]="secondFormGroup" label="Expertise & Experience Information">
       <form [formGroup]="secondFormGroup">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
           <mat-label>Are you a Frontend, Backend or Fullstack developer?</mat-label>
           <mat-select formControlName="areaExpertise">
             <mat-option *ngFor="let area of expertiseAreas" [value]="area">
@@ -22,13 +26,9 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <!-- <mat-form-field appearance="fill">
-          <mat-label>Address</mat-label>
-          <input matInput formControlName="areaExpertise" placeholder="Ex. 1 Main St, New York, NY" required>
-        </mat-form-field> -->
         <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-raised-button matStepperPrevious>Back</button>
+          <button mat-raised-button matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
@@ -36,8 +36,8 @@
       <ng-template matStepLabel>Onboarding Complete!</ng-template>
       <p>You are now done.</p>
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button color="primary" (click)="submitOnboarding()">Complete Onboarding!</button>
+        <button mat-raised-button matStepperPrevious>Back</button>
+        <button mat-raised-button color="primary" (click)="submitOnboarding()">Complete Onboarding!</button>
 
       </div>
     </mat-step>

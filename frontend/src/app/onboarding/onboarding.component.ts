@@ -16,6 +16,7 @@ export class OnboardingComponent implements OnInit {
 
   firstFormGroup = this.formBuilder.group({
     firstName: ['', Validators.required],
+    githubUsername: [''],
   });
   secondFormGroup = this.formBuilder.group({
     areaExpertise: ['', Validators.required], // FrontEnd, BackEnd, Full Stack
@@ -35,9 +36,14 @@ export class OnboardingComponent implements OnInit {
 
   public async submitOnboarding(): Promise<void> {
     if (this.formHasValidationErrors(this.firstFormGroup) || this.formHasValidationErrors(this.secondFormGroup)) return;
+
     let profile = new UserProfileInformationDTO();
+
+    // Assign controls from forms to check for values.
     const firstNameControl = this.firstFormGroup.get('firstName');
+    const githubUsernameControl = this.firstFormGroup.get('githubUsername');
     const expertiseAreaControl = this.secondFormGroup.get('areaExpertise');
+
     if (firstNameControl) {
       const firstName = firstNameControl.value;
       profile.name = firstName;
@@ -47,8 +53,17 @@ export class OnboardingComponent implements OnInit {
       profile.expertiseArea = expertiseArea;
     }
 
+    console.log(githubUsernameControl);
+
+    if (githubUsernameControl) {
+      const githubUsername = githubUsernameControl.value;
+      profile.githubUsername = githubUsername;
+    }
+
     this.user.profile = profile;
     this.user.onboarded = true;
+
+    console.log(this.user);
 
     this.usersService.updateUser(this.user._id!, this.user).then(user => {
       if (user) {
