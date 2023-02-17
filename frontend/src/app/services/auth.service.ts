@@ -13,7 +13,9 @@ export class AuthService {
 
   async login(user: CredentialsUserDTO): Promise<UserDTO> {
     const response = await this.apiService.post('login', user);
-    if (user.onboarded === true) {
+    console.log(response);
+
+    if ((response.data as UserDTO).onboarded === true) {
       this.router.navigate(['dashboard']);
     } else {
       this.router.navigate(['onboarding']);
