@@ -6,4 +6,7 @@ export class UserProfileInformationDTO {
 
   @IsString()
   public expertiseArea?: string;
+
+  @IsString()
+  public githubUsername?: string;
 }
