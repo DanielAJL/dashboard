@@ -53,8 +53,6 @@ export class OnboardingComponent implements OnInit {
       profile.expertiseArea = expertiseArea;
     }
 
-    console.log(githubUsernameControl);
-
     if (githubUsernameControl) {
       const githubUsername = githubUsernameControl.value;
       profile.githubUsername = githubUsername;

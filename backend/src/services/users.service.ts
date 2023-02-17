@@ -13,7 +13,7 @@ class UserService {
     const users: User[] = await this.users
       .find()
       .select('-password')
-      .where({ name: { $exists: true, $nin: [null, ''] } });
+      .where({ email: { $exists: true, $nin: [null, ''] } });
     return users;
   }
 
